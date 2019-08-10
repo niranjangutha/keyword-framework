@@ -5,7 +5,7 @@
     <classes>
       <class name="qa.keyword.testng.TestNG">
         <methods>
-          <include name="LoginTest"/>
+          <include name="signinTest"/>
         </methods>
       </class> <!-- qa.keyword.testng.TestNG -->
     </classes>

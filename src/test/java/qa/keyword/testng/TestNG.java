@@ -12,5 +12,11 @@ public class TestNG {
 		keywordengine=new keyWordEngine();
 		keywordengine.startExecution("login");
 	}
+	@Test
+	public void signinTest()
+	{
+		keywordengine=new keyWordEngine();
+		keywordengine.startExecution("signin");
+	}
 
 }

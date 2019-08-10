@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Base {
 	public  WebDriver driver;
@@ -17,19 +18,20 @@ public class Base {
 	public WebDriver  init_driver(String browserName){
 	if(browserName.equals("chrome")){
 		System.setProperty("webdriver.chrome.driver", "h:\\drivers\\chromedriver.exe");
-		if(prop.getProperty("headless").equals("yes")) 
-		{
-			ChromeOptions opt=new ChromeOptions();
-			opt.addArguments("--headless");
-			driver=new ChromeDriver(opt);
+			  if(prop.getProperty("headless").equals("yes")) {
+			  ChromeOptions opt=new
+			  ChromeOptions(); opt.addArguments("--headless"); driver=new
+			  ChromeDriver(opt); }
+			  else {
+			  driver=new ChromeDriver();
+			  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			  
+			  } 
 		}
-		else
-		{
-			driver=new ChromeDriver();
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			
-		}
-		}
+	else if(browserName.equals("firefox")){
+		System.setProperty("webdriver.gecko.driver", "h:\\drivers\\geckodriver.exe");
+		driver = new FirefoxDriver();
+	}
 	return driver;
 	}
 	

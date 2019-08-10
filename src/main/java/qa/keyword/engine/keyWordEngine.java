@@ -49,13 +49,16 @@ public class keyWordEngine {
 		int k=0;
 		for(int i=0;i<sheet.getLastRowNum();i++) {
 			try {
-			String LocatorColVal = sheet.getRow(i+1).getCell(k+1).toString().trim();//id=username
-				if(!LocatorColVal.equalsIgnoreCase("na")){
-					Locatorname=LocatorColVal.split("=")[0].trim();//id
-					LocatorValue=LocatorColVal.split("=")[1].trim();///username
-				}
-			String action=sheet.getRow(i+1).getCell(k+2).toString().trim();
-			String value=sheet.getRow(i+1).getCell(k+3).toString().trim();
+				/*String LocatorColVal = sheet.getRow(i+1).getCell(k+1).toString().trim();//id=username
+			
+				 * if(!LocatorColVal.equalsIgnoreCase("na")){
+				 * Locatorname=LocatorColVal.split("=")[0].trim();//id
+				 * LocatorValue=LocatorColVal.split("=")[1].trim();///username }
+				 */
+				 Locatorname=sheet.getRow(i+1).getCell(k+1).toString().trim();
+				 LocatorValue=sheet.getRow(i+1).getCell(k+2).toString().trim();
+				String action=sheet.getRow(i+1).getCell(k+3).toString().trim();
+				String value=sheet.getRow(i+1).getCell(k+4).toString().trim();
 			
 			switch (action) {
 			case "open browser":
@@ -76,12 +79,20 @@ public class keyWordEngine {
 					driver.get(value);
 				}
 				break;
+			case "geturl":
+				String currenturl=driver.getCurrentUrl();
+				System.out.println(currenturl);
+				break;
 			case "quit":
 				driver.quit();
 				break;
 			default:
 				break;
 			}
+			
+			
+			
+			
 			switch (Locatorname) {
 			case "id":
 				element=driver.findElement(By.id(LocatorValue));
@@ -92,11 +103,100 @@ public class keyWordEngine {
 				else if(action.equalsIgnoreCase("click")){
 					element.click();
 				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
+				Locatorname=null;
+				break;
+			case "Name":
+				element=driver.findElement(By.id(LocatorValue));
+				if(action.equalsIgnoreCase("sendkeys")) {
+				element.clear();
+				element.sendKeys(value);
+				}
+				else if(action.equalsIgnoreCase("click")){
+					element.click();
+				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
+				Locatorname=null;
+				break;
+			case "className":
+				element=driver.findElement(By.id(LocatorValue));
+				if(action.equalsIgnoreCase("sendkeys")) {
+				element.clear();
+				element.sendKeys(value);
+				}
+				else if(action.equalsIgnoreCase("click")){
+					element.click();
+				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
+				Locatorname=null;
+				break;
+			case "cssSelector":
+				element=driver.findElement(By.id(LocatorValue));
+				if(action.equalsIgnoreCase("sendkeys")) {
+				element.clear();
+				element.sendKeys(value);
+				}
+				else if(action.equalsIgnoreCase("click")){
+					element.click();
+				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
+				Locatorname=null;
+				break;
+			case "partialLinkText":
+				element=driver.findElement(By.id(LocatorValue));
+				if(action.equalsIgnoreCase("sendkeys")) {
+				element.clear();
+				element.sendKeys(value);
+				}
+				else if(action.equalsIgnoreCase("click")){
+					element.click();
+				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
+				Locatorname=null;
+				break;
+			case "xpath":
+				element=driver.findElement(By.id(LocatorValue));
+				if(action.equalsIgnoreCase("sendkeys")) {
+				element.clear();
+				element.sendKeys(value);
+				}
+				else if(action.equalsIgnoreCase("click")){
+					element.click();
+				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
 				Locatorname=null;
 				break;
 			case "LinkText":
-				element=driver.findElement(By.linkText(LocatorValue));
-				element.click();
+				element=driver.findElement(By.id(LocatorValue));
+				if(action.equalsIgnoreCase("sendkeys")) {
+				element.clear();
+				element.sendKeys(value);
+				}
+				else if(action.equalsIgnoreCase("click")){
+					element.click();
+				}
+				else if(action.equalsIgnoreCase("isDisplayed")) {
+					boolean dispaly=element.isDisplayed();
+					System.out.println(dispaly);
+				}
 				Locatorname=null;
 				break;
 
@@ -109,8 +209,7 @@ public class keyWordEngine {
 		{
 			
 		}
-		outputurl=driver.getCurrentUrl();
-		System.out.println(outputurl);
+		
 	}		
 	}
 }
